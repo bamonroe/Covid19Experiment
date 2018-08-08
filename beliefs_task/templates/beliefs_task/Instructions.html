@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h1>Task 1 Instructions</h1>
+<br><br>
+Please turn up your volume and click the play button in the video below to watch instructions for the task.
+When the video is finished, click the Next button below to continue.
+<br>
+<br>
+{% next_button %}
+<br>
+<iframe src={{ video_url }} width="800" height="450" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<br>
+<br>
+    <div id="btn_tmr_msg"><br></div>
+<br>
+{% endblock %}
+{% block scripts %}
+    <script>
+        start_timer( {{expiration_time}} )
+    </script>
+{% endblock %}

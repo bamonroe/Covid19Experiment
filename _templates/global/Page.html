@@ -1,0 +1,86 @@
+{% extends "otree/Page.html" %}
+{% load otree static %}
+
+{% block global_styles  %}
+    <style>
+        .page-header {
+            padding-top:10px
+        }
+        .topcorner{
+            position:absolute;
+            top:0;
+            right:0;
+        }
+        #time_remaining{
+            position:absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+
+    <div class="topcorner">{{participant.label}}</div>
+    <div id="time_remaining"></div>
+
+{% endblock %}
+
+{% block global_scripts  %}
+    <script>
+        //Script for countdown timer
+        let stopTime = -1;
+        let expirationMessage = "Timer Expired: You are not eligible for payment.";
+        function start_timer(t) {
+            if (t == -1) {  // skip timer if participant time limit not set
+                return;
+            }
+            let t_ms = t * 1000;    // Python logs POSIX time in seconds while JS uses milliseconds
+            let diff = -1;
+            stopTime = new Date(t_ms);
+            function timer() {
+                diff = stopTime - Date.now();
+                let formatted_time = "NULL";
+                if (diff < 0) {
+                    formatted_time = expirationMessage;
+                    clearInterval(interval_id);
+                    // May eventually want to add more logic to handle subject time expiration
+                } else {
+                    diff = (diff / 1000) | 0;   // convert ms to s for easier human consumption
+                    let d = Math.floor(diff / 86400);
+                    diff -= d * 86400;
+                    let h = Math.floor(diff / 3600);
+                    diff -= h * 3600;
+                    let m = Math.floor(diff / 60);
+                    diff -= m * 60;
+                    let s = Math.floor(diff);
+                    formatted_time = d + "d:" + h + 'h:' + m + 'm:' + s + "s";
+                }
+                $("#time_remaining").html(formatted_time);
+            }
+            if (stopTime - Date.now() > 0){                     // then still time remaining
+                timer();
+                let interval_id = setInterval(timer,1000);
+            } else {                                            // no time remaining; do not start timer
+                $("#time_remaining").html(expirationMessage);
+            }
+        }
+    </script>
+    <script>
+        // script for logging timestamps of decision events
+        let startTime = -1;
+        let event = function(id, ms_offset) {
+            this.id = id;
+            this.ms_offset = ms_offset;
+        }
+        let events = [];
+
+        // Function to capture the current time in milliseconds from start time
+        let log_event = function(evt) {
+            if (evt.toUpperCase() == "START") {
+                startTime = Date.now();
+                events.push({"id": "AbsoluteStartTime", "ms_posix": startTime});
+            }
+            let offset = Date.now() - startTime;
+            events.push(new event(evt, offset));
+            $("#timeStamps").val(JSON.stringify(events));
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Task 2
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Imported stuff from the wild -->
+<script src="{% static "node_modules/chart.js/dist/Chart.js" %}"></script>
+<script src="{% static "node_modules/chart.piecelabel.js/src/Chart.PieceLabel.js" %}"></script>
+
+<!-- My stuff -->
+<link rel="stylesheet" href="{% static "risk_task/risk.css" %}"/>
+<script type="text/javascript" src="{% static "risk_task/risk.js" %}"></script>
+
+<style>
+</style>
+
+<p>
+<div id = "Decision" style="font-size:24px;font-weight:bold;">
+	Decision: <span id="round_number" style="color:red;"></span> of <span id="number_of_rounds"></span>
+</div>
+</p>
+
+    <button type="button" id="btn_instructions">Show instructions</button>
+    <div id = "instructions" style="display:none">
+            <iframe src={{ video_url }} width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <script>
+        $('#btn_instructions').click(function() {
+            $('#instructions').toggle();
+            $(this).html( $(this).html() == 'Show instructions' ? 'Hide instructions' : 'Show instructions' );
+        });
+    </script>
+
+<div id="full_div">
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+	let risk_dat = {{risk_dat|json}};
+	risk_ns.mkview(risk_dat, "full_div", results = 0, show_submit = 1);
+    start_timer( {{ expiration_time }} );
+</script>
+
+{% endblock %}

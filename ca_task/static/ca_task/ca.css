@@ -1,0 +1,73 @@
+.otree-body{
+	max-width:80%;
+}
+.cal_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width:100%;
+	vertical-align: top;
+	text-align : center;
+}
+#main_table_wrapper {
+	display:flex;
+	justify-content: center;
+}
+.main_table {
+	height: 100%;
+	height:25vh;
+}
+.choice_row {
+	font-size: large;
+	border:1px solid black;
+	width:100%;
+	text-align:center;
+}
+.circle_cell {
+	width:  40%;
+}
+.text_cell {
+	height: 100%;
+	width:  100%;
+	padding-top: 2.0%;
+	padding-bottom: 2.0%;
+	text-align:center;
+}
+
+.pie_chart {
+	width: 100%;
+}
+
+.choice_text {
+	width:100%;
+	height:100%;
+	text-align:center;
+}
+
+.cal_month {
+	text-align    : center;
+	margin-left  : 15px;
+	margin-right  : 15px;
+	margin-top    : 10px;
+	margin-bottom : 10px;
+	width         : auto;
+}
+
+#submit_button:disabled {
+	background-color: #999;
+}
+
+#top_row {
+}
+
+#bottom_row {
+}
+
+#results_text {
+	font-size: large;
+	text-align: left;
+}
+#screen_for_payment {
+	font-size: x-large;
+	text-align: left;
+}

@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Payment for Task 2
+{% endblock %}
+
+{% block content %}
+<script src="{% static "node_modules/chart.js/dist/Chart.js" %}"></script>
+<script src="{% static "node_modules/chart.piecelabel.js/src/Chart.PieceLabel.js" %}"></script>
+<!-- My stuff -->
+<link rel="stylesheet" href="{% static "risk_task/risk.css" %}"/>
+<script type="text/javascript" src="{% static "risk_task/risk.js" %}"></script>
+
+<br style="margin-top:30px;">
+
+<div id="full_div">
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+	let risk_dat = {{risk_dat|json}};
+	risk_ns.mkview(risk_dat, "full_div", results = 1, show_submit = 1);
+    start_timer( {{ expiration_time }} );
+</script>
+{% endblock %}

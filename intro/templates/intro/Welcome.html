@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Study Road Map
+{% endblock %}
+
+{% block content %}
+
+    <p>
+		Welcome to the study. The table below lists the order of questionnaires
+		and components of the study you will complete today. As you finish each
+		component, the status of that component will update to Complete.
+		Instructions for the tasks will be provided before starting each task.
+		If you are disconnected from a task, use the web link provided in your
+		invitation email to pick back up where you left off. 
+    </p>
+    <p>
+		You have until {{ formatted_end_time }} to complete all tasks.
+    </p>
+    <p>
+	Click the <b>Next</b> button below to continue.
+    </p>
+
+
+    {% include "global/sequence_table.html" %}
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        start_timer( {{ expiration_time }} );
+    </script>
+{% endblock %}

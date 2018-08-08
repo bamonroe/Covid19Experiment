@@ -1,0 +1,3 @@
+otree>=2.0.27
+pandas
+otreeutils

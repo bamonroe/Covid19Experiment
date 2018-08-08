@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Health Questionnaire
+{% endblock %}
+
+{% block content %}
+
+You will now complete a questionnaire on health risks and health outcomes.
+Click the Next button below to continue.
+
+    {% include "global/sequence_table.html" %}
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        start_timer( {{ expiration_time }} );
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+.otree-body {
+	max-width: 80%;
+}
+.cal_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:center;
+	width:100%;
+	vertical-align: top;
+	text-align : center;
+}
+.cal_month {
+	text-align    : center;
+	margin-left  : 15px;
+	margin-right  : 15px;
+	margin-top    : 10px;
+	margin-bottom : 10px;
+	width         : auto;
+}
+#main_table {
+	margin-top : 40px;
+	width:80%;
+	text-align:center;
+	padding-top:100px;
+	margin-left:10%;
+}
+#main_table_header {
+	font-size: large;
+}
+.SS_td {
+	width : 45%;
+}
+.LL_td {
+	width : 45%;
+}
+#submit_button:disabled {
+	background-color: #999;
+}
+#results_text {
+	font-size: large;
+}
+#decision_text {
+	font-size: x-large;
+}

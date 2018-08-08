@@ -1,0 +1,83 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+
+{% block content %}
+    <style>
+        .bu {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+
+    <p>
+        Thank you for joining the study! Recall:
+    </p>
+    <ul>
+		<li>The study should take about 2 to 3 hours of your time to complete. You
+			may do this all in one sitting or at different intervals over the
+			24-hour period communicated in your invitation email. However you
+			choose, it must be fully completed for payment. If you take a
+			break, we suggest that it would be best if you take it between
+			tasks rather than during a single task.
+        </li>
+		<li>Within the 24-hour period, you can pick back up where you left off
+			by clicking the link sent in the invitation email. You may also
+			revisit that link any time after you complete the study to see a
+			copy of the receipt sheet. The online receipt contains no
+			personally identifiable information and only displays after you
+			complete the study.
+        </li>
+		<li>A participation payment of R{{ participant.vars.endowment }} will
+			be paid to you after completion of the study.
+        </li>
+		<li>There are 2 questionnaires and 4 incentivised tasks associated with
+			this study.
+		</li>
+		<li>In addition to the participation payment for completing the study,
+			each incentivised task has the potential to get you additional
+			earnings either today or in the future. The amount of additional
+			earnings depends on your responses, chance, and realised
+			outcomes.
+        </li>
+		<li>All 4 incentivised tasks will be explained through instruction videos
+			before you participate.
+		</li>
+    </ul>
+    </p>
+
+    <p>
+	The last item we need from you before beginning the study is your cellphone
+	number so you can receive the participation payment and any additional
+	earnings from the incentivised tasks through Standard Bank Instant Money.
+    You will receive an SMS from Standard Bank with your Instant Money voucher number,
+    and a separate SMS with your code to activate the voucher. The voucher can be redeemed
+    for cash at Spar supermarkets, Standard Bank ATMs, and other stores. See the
+    <a href="https://www.standardbank.co.za/southafrica/personal/products-and-services/ways-to-bank/innovative-payment-solutions/instant-money" target="_blank">Standard Bank Instant Money website</a>
+	for more details. <b>Note that your instant Money voucher will expire 14
+	days after you receive it, so please make sure you redeem the voucher for
+	cash within 14 days.</b>
+    </p>
+
+    {% formfield player.payment_phone %}
+    {% formfield player.payment_phone_confirm %}
+
+    <center>
+        <button class="btn btn-primary btn-large" type="">Continue</button>
+    </center>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        start_timer( {{ expiration_time }} );
+    </script>
+{% endblock %}

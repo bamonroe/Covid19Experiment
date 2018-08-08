@@ -1,0 +1,182 @@
+.otree-body {
+	max-width:80%;
+}
+
+#top_div {
+	text-align: center;
+	height: 500px;
+	margin-left: 10%;
+}
+
+
+#question_div {
+	font-size: large;
+	margin-bottom: 20px;
+	margin-top: 30px;
+	height: auto;
+}
+
+#unallocated {
+	height: auto;
+	font-size: small;
+	font-weight: bold;
+}
+#unallocated::after {
+	content: " unallocated tokens";
+}
+
+#chart_wapper {
+	border    : 0px solid blue;
+	height    : 40%;
+	width     : 100%;
+}
+
+#axis_div {
+	position  : absolute;
+	height    : 100%;
+	left      : -5%;
+	width     : 5%;
+	border    : 0px solid green;
+	font-size : small;
+}
+.axis_tick {
+	border         : 0px solid blue;
+	position       : absolute;
+	vertical-align : bottom;
+	text-align     : right;
+	padding-right  : 5px;
+	width          : 100%;
+}
+
+#bar_div {
+	position  : relative;
+	border    : 0px solid red;
+	height    : 100%;
+	width     : 100%;
+	font-size : 0;
+}
+
+.div_bar{
+	position   : absolute;
+	bottom     : 0;
+	border     : 1px solid white;
+	height     : 0%;
+}
+
+.bar_amt {
+	position: absolute;
+	font-size: small;
+	border:0px solid black;
+	height:10%;
+	width: 10%;
+}
+
+#label_div {
+	position  : relative;
+	border    : 0px solid red;
+	height    : 7.5%;
+	width     : 100%;
+}
+
+.label_val {
+	position  : absolute;
+	border    : 0px solid orange;
+	height    : 100%;
+	text-align: center;
+	font-size: small;
+	line-height: .9;
+}
+
+#prob_div {
+	position  : relative;
+	background-color: #e8e8e8;
+	margin-top: 1%;
+	border    : 0px solid orange;
+	height    : 3%;
+	width     : 100%;
+}
+
+.prob_val {
+	position  : absolute;
+	border    : 0px solid blue;
+	height    : 100%;
+	text-align: center;
+	font-size: small;
+}
+
+#amount_div {
+	background-color: #e8e8e8;
+	position  : relative;
+	border    : 0px solid blue;
+	height    : 5%;
+	width     : 100%;
+}
+
+.amt_val {
+	position  : absolute;
+	border    : 0px solid blue;
+	height    : 100%;
+	width     : 0;
+	left      : 0;
+	text-align: center;
+	font-size: small;
+}
+.amt_val:before {
+	content:"pay ";
+}
+
+.slider_div {
+	background-color: #e8e8e8;
+	border   : 0px solid black;
+	position : relative;
+	width    : 100%;
+	height   : 30%;
+}
+
+.cell_val {
+	position: relative;
+	height: 100%;
+	border: 0px solid black;
+}
+
+.slider {
+	position  : absolute;
+	transform : rotate(270deg);
+	padding   : 0;
+	margin-left:0px;
+	margin-right:0px;
+	width     : 150px;
+	left      : 0px;
+}
+
+.submit_div {
+	border   : 0px solid black;
+	text-align: center;
+	width: 100%;
+	height: 10%;
+}
+
+#submit_table {
+	border   : 0px solid black;
+	width: 100%;
+	height: 10%;
+}
+
+
+#alt_button {
+}
+
+#submit_button {
+}
+
+#submit_button:disabled {
+	background-color: #999;
+}
+
+#submit_message {
+	font-weight: bold;
+}
+
+#results_text {
+	font-size: large;
+}

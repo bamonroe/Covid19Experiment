@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Survey Questions
+{% endblock %}
+
+{% block content %}
+
+<p>
+You will now complete survey questions. Click the <b>Next</b> button
+below to continue.
+</p>
+
+    {% include "global/sequence_table.html" %}
+
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        start_timer( {{ expiration_time }} );
+    </script>
+{% endblock %}

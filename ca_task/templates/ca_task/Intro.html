@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Task 4
+{% endblock %}
+
+{% block content %}
+<br><br>
+You will now complete Task 4. Click the Next button below to continue.
+
+    {% include "global/sequence_table.html" %}
+
+<br><br>
+{% next_button %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        start_timer( {{expiration_time}} )
+    </script>
+{% endblock %}

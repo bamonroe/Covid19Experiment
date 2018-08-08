@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+	Task 1
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static "beliefs_task/beliefs.css" %}">
+<script type="text/javascript" src="{% static "beliefs_task/beliefs.js" %}"></script>
+
+<style>
+</style>
+
+<p><h4>
+Decision: <font color = "red"><b id="round_number"></b></font> of <span id="number_of_rounds"></span>
+</h4></p>
+
+    <button type="button" id="btn_instructions">Show instructions</button>
+    <div id = "instructions" style="display:none">
+            <iframe src={{ video_url }} width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <script>
+        $('#btn_instructions').click(function() {
+            $('#instructions').toggle();
+            $(this).html( $(this).html() == 'Show instructions' ? 'Hide instructions' : 'Show instructions' );
+        });
+    </script>
+
+<div id = "full_div">
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+// Some initial globals
+
+let belief_dat = {{beliefs|json}};
+beliefs_ns.mkview(belief_dat, "full_div", results = 0, show_submit = 1);
+start_timer( {{ expiration_time }} )
+
+</script>
+
+{% endblock %}

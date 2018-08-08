@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Payment Information
+{% endblock %}
+
+{% block content %}
+
+
+    {% if finish_on_time == True %}
+        <p style="color:green; font-weight:bold">
+            You successfully finished the study on time, and will be paid as detailed below.
+        </p>
+    {% else %}
+        <p style="color:red; font-weight:bold">
+            You failed to finish the study on time, and so you will not receive any payment.
+        </p>
+    {% endif %}
+    <br>
+
+
+
+<!-- Imported stuff from the wild -->
+<script src="{% static "node_modules/chart.js/dist/Chart.js" %}"></script>
+<script src="{% static "node_modules/chart.piecelabel.js/src/Chart.PieceLabel.js" %}"></script>
+
+<link rel="stylesheet" href="{% static "risk_task/risk.css" %}"/>
+<script type="text/javascript" src="{% static "risk_task/risk.js" %}"></script>
+<link rel="stylesheet" href="{% static "time_task/time.css" %}"/>
+<script type="text/javascript" src="{% static "time_task/time.js" %}"></script>
+<link rel="stylesheet" href="{% static "beliefs_task/beliefs.css" %}"/>
+<script type="text/javascript" src="{% static "beliefs_task/beliefs.js" %}"></script>
+<link rel="stylesheet" href="{% static "ca_task/ca.css" %}"/>
+<script type="text/javascript" src="{% static "ca_task/ca.js" %}"></script>
+
+<link rel="stylesheet" href="{% static "final_page/final.css" %}"/>
+<script type="text/javascript" src="{% static "final_page/final.js" %}"></script>
+
+<style>
+</style>
+
+
+<div id="selector"></div>
+<div id="viewer"></div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+	let risk_dat    = {{risk_dat|json}};
+	let time_dat    = {{time_dat|json}};
+	let ca_dat      = {{ca_dat|json}};
+	let beliefs_dat = {{beliefs_dat|json}};
+	let endowment   = {{endowment}};
+	let session_date = "{{session_date}}";
+	final_ns.fill_selector();
+	final_ns.select_view("Final Payment");
+</script>
+
+{% endblock %}

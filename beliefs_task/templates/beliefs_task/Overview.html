@@ -1,0 +1,56 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h1>Task 1</h1>
+<br><br>
+{% if locale == "usa" %}
+<span style='font-size: x-large;'>Overview</span>
+<ul>
+	<li>Today you will be asked 4 questions about COVID-19 related events occurring in the future.</li>
+    <li>When you have completed all questions, one will be randomly chosen for payment and shown to you.</li>
+    <li>Within 14 days of the future date displayed in the selected question, the research team will verify what the outcome is and pay you based on your token allocation.</li>
+    <li>The research team will verify future outcomes in levels, not percentages, using information from the 
+		<a href='https://www.cdc.gov/' target="_blank"> US Centers for Disease Control and Prevention</a> (US CDC).</li>
+	<li>For question payment, we will treat the correct answer as the first public report after December 1.</li>
+	<li>
+		Note this task is best viewed on a device with a larger display screen
+		(laptop, desktop, tablet) using one of the following internet browsers:
+		Google Chrome, Microsoft Edge, Mozilla Firefox, or Opera. If you want
+		to change devices, please do so now. Once logged on to the new device
+		you can pick back up where you left off by clicking the link sent in
+		the invitation email.
+	</li>
+</ul>
+{%endif%}
+{% if locale == "rsa" %}
+<span style='font-size: x-large;'>Overview</span>
+<ul>
+	<li>Today you will be asked 3 questions about COVID-19 related events occurring in the future.</li>
+	<li>When you have completed all questions, one will be randomly chosen for payment and shown to you.</li> 
+	<li>Within 14 days of the future date displayed in the selected question, the research team will verify what the outcome is and pay you based on your token allocation.</li> 
+	<li>The research team will verify future outcomes in levels, not percentages, using information from the
+		<a href="https://www.nicd.ac.za" target="_blank">National Institute for Communicable Diseases (NICD)</a>.</li> 
+	<li>For question payment, we will treat the correct answer as the first public report after December 1.</li>
+	<li>
+		Note this task is best viewed on a device with a larger display screen
+		(laptop, desktop, tablet) using one of the following internet browsers:
+		Google Chrome, Microsoft Edge, Mozilla Firefox, or Opera. If you want
+		to change devices, please do so now. Once logged on to the new device
+		you can pick back up where you left off by clicking the link sent in
+		the invitation email.
+	</li>
+</ul>
+{%endif%}
+<br>
+{% next_button %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        start_timer( {{expiration_time}} )
+    </script>
+{% endblock %}
+

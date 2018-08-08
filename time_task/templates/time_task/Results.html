@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Payment for Task 3
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static "time_task/time.css" %}"/>
+<script type="text/javascript" src="{% static "time_task/time.js" %}"></script>
+
+<style>
+#round_title {
+	font-size: x-large;
+	margin-bottom: 20px;
+}
+</style>
+
+
+<div id="full_div">
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+// Call the functions needed to setup the page
+let time_dat = {{time_dat|json}};
+time_ns.mkview(time_dat, "full_div", results = 1, show_submit = 1);
+start_timer( {{ expiration_time }} );
+</script>
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block content %}
+    <style>
+        .bu {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+
+    <p>
+        Thank you for joining the study! Recall:
+    </p>
+    <ul>
+		<li>The study should take about 2 to 3 hours of your time to complete. You
+			may do this all in one sitting or at different intervals over the
+			24-hour period communicated in your invitation email. However you
+			choose, it must be fully completed for payment. If you take a
+			break, we suggest that it would be best if you take it between
+			tasks rather than during a single task.
+        </li>
+        <li>Within the 24-hour period, you can pick back up where you left off by clicking the link sent in the
+            invitation email. You may also revisit that link any time after you complete the study to see a copy of the
+            receipt sheet. The online receipt contains no personally identifiable information and only displays after
+            you complete the study.
+        </li>
+        <li>A participation payment of ${{ participant.vars.endowment }} will be paid to you after completion
+            of the study.
+        </li>
+        <li>There are 2 questionnaires and 4 incentivized tasks associated with this study.</li>
+        <li>In addition to the participation payment for completing the study, each incentivized task has the potential
+            to get you additional earnings either today or in the future. The amount of additional earnings depends on
+            your responses, chance, and realized outcomes.
+        </li>
+        <li>All 4 incentivized tasks will be explained through instruction videos before you participate.</li>
+    </ul>
+    </p>
+    <p>
+        The last item we need from you before beginning the study is your preferred method to receive the participation
+        payment and any additional earnings from the incentivized tasks. Please select a primary and a secondary
+        method. If there is trouble with the first method, we’ll try the backup. We will only use this information for
+        payment purposes only.
+    </p>
+    <p>
+    Provide your given, legal, name:
+    </p>
+
+    {% formfield player.payment_first_name %}
+    {% formfield player.payment_last_name %}
+
+    <div id="primary">
+        {% formfield player.payment_primary %}
+    </div>
+
+    <div id="secondary" style="display:none">
+        {% formfield player.payment_secondary %}
+    </div>
+
+    <div id="venmo" style="display:none">
+        <b>Venmo</b> – enter your phone number associated with your account:
+        {% formfield player.payment_phone %}
+        {% formfield player.payment_phone_confirm %}
+    </div>
+
+    <div id="paypal" style="display:none">
+        <b>PayPal</b> – enter your email associated with your account:
+        {% formfield player.payment_email %}
+        {% formfield player.payment_email_confirm %}
+    </div>
+
+    <div id="check" style="display:none">
+        <b>Bank check sent by Postal Service to a domestic address</b> – enter the address you want this sent to:
+        {% formfield player.payment_address_1 %}
+        {% formfield player.payment_address_2 %}
+        {% formfield player.payment_city %}
+        {% formfield player.payment_state %}
+        {% formfield player.payment_zip %}
+    </div>
+
+    <script>
+        var $primaryDiv = $('#primary');
+        var $secondaryDiv = $('#secondary');
+        var $secondaryPaymentClone = $('#id_payment_secondary').clone();
+        var $venmoDiv = $('#venmo');
+        var $paypalDiv = $('#paypal');
+        var $checkDiv = $('#check');
+        $('#id_payment_primary').change(function () {
+            var selection = $('#id_payment_primary').val();
+            $('#primary :input').not('#primary #id_payment_primary').val("");
+            $('#secondary :input').not('#secondary #id_payment_secondary').val("");
+            $('#venmo, #paypal, #check').detach();
+            $secondaryDiv.hide();
+            $('#id_payment_secondary').html($secondaryPaymentClone.html());
+            if (selection === 'venmo') {
+                $primaryDiv.append($venmoDiv);
+                $venmoDiv.show();
+                $('#id_payment_secondary').find('option:contains(Venmo)').remove(); // Venmo not venmo
+                $secondaryDiv.show();
+            } else if (selection === 'paypal') {
+                $primaryDiv.append($paypalDiv);
+                $paypalDiv.show();
+                $('#id_payment_secondary').find('option:contains(Paypal)').remove(); // Paypal not paypal
+                $secondaryDiv.show();
+            } else if (selection === 'check') {
+                $primaryDiv.append($checkDiv);
+                $checkDiv.show();
+                $('#id_payment_secondary').find('option:contains(check)').remove(); // check not Check
+                $secondaryDiv.show();
+            }
+        });
+        $('#id_payment_secondary').change(function () {
+            var selection = $('#id_payment_secondary').val();
+            $('#secondary :input').not('#secondary #id_payment_secondary').val("");
+            $('#secondary').children('#venmo, #paypal, #check').detach()
+            if (selection === 'venmo') {
+                $secondaryDiv.append($venmoDiv);
+                $venmoDiv.show();
+            }
+            if (selection === 'paypal') {
+                $secondaryDiv.append($paypalDiv);
+                $paypalDiv.show();
+            }
+            if (selection === 'check') {
+                $secondaryDiv.append($checkDiv);
+                $checkDiv.show();
+            }
+        });
+        // Call function above on page load to hide divs.
+        // Note that we do not unconditionally hide all divs, because if page is loaded after validation
+        // check failure, we want the div that was already open on submit to still be open on reload.
+        $( document ).ready(function() {
+            $('#id_payment_primary').change();
+            $('#id_payment_secondary').change();
+        });
+    </script>
+
+    <center>
+        <button class="btn btn-primary btn-large" type="">Continue</button>
+    </center>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        start_timer( {{ expiration_time }} );
+    </script>
+{% endblock %}

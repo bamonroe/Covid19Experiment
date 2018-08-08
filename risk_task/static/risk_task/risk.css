@@ -1,0 +1,58 @@
+.full_div {
+	width: 100%;
+	height: 80vh;
+	font-size: 0px;
+}
+
+.lot_div, .lot_res {
+	font-size: large;
+	text-align: center;
+	display: inline-block;
+	width: 49%;
+	border: 2px solid transparent;
+}
+
+.lot_div:hover{
+	border: 2px solid #ADD8E6;
+}
+
+.lot_header {
+	border: 0px solid red;
+	font-size: x-large;
+}
+
+.lot_header_caption {
+	font-weight: bold;
+	border: 0px solid red;
+	font-size: x-large;
+}
+
+.option_text {
+	border: 0px solid red;
+}
+
+.submit {
+	text-align: center;
+}
+
+#lottery_A {
+}
+
+#lottery_B {
+}
+
+#submit_button:disabled {
+	background-color: #999;
+}
+
+#submit_message {
+	margin-top: 5%;
+}
+
+#task_chosen {
+	font-size: x-large;
+}
+#you_chose {
+	font-size: large;
+	margin-bottom:30px;
+}
